@@ -1,0 +1,46 @@
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userprefs
+*.sln.docstates
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+[Rr]elease[ _]x64/
+[Rr]elease[ _]x86/
+[Aa]ssets/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+
+# Visual Studio Code
+.vscode/
+
+# User-specific files
+*.ncb
+*.opensdf
+*.sdf
+*.sln.ide
+
+# Backup files
+*.bak
+*.tmp
+*.temp
+*.log
+
+# C++ specific files
+*.pdb
+*.ilk
+*.idb
+*.ipch
+*.obj
+*.exe
+*.dll
+*.lib
+*.a
+*.manifest
+
+# Dependency directories
+packages/
