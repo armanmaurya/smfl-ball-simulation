@@ -2,10 +2,10 @@
 #include "Ball.hpp"
 
 int main() {
-	sf::RenderWindow window(sf::VideoMode(1920, 1080), "Window");
+	sf::RenderWindow window(sf::VideoMode(1280, 720), "Window");
 	Ball ball(30., sf::Color::Black);
 	window.setFramerateLimit(60);
-	float speed = 7.;
+	long speed = 1.f * (1/60);
 	ball.setPosition(sf::Vector2f((window.getSize().x / 2) - 30, (window.getSize().y / 2) - 30));
 	
 	while (window.isOpen()) {
@@ -24,17 +24,44 @@ int main() {
 			speed = 7.;
 		}
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && currentPos.y > 0) {
-			ball.setVelocity(sf::Vector2f(0., -speed));
+		/*if (sf::Keyboard::isKeyPressed(sf::Keyboard::W) && currentPos.y > 0) {
+			ball.AddForce(sf::Vector2f(0., -speed));
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S) && (currentPos.y + 60) < window.getSize().y) {
-			ball.setVelocity(sf::Vector2f(0., speed));
+			ball.AddForce(sf::Vector2f(0., speed));
 		} 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A) && currentPos.x > 0) {
-			ball.setVelocity(sf::Vector2f(-speed, 0.));
+			ball.AddForce(sf::Vector2f(-speed, 0.));
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D) && (currentPos.x + 60) < window.getSize().x) {
-			ball.setVelocity(sf::Vector2f(speed, 0.));
+			ball.AddForce(sf::Vector2f(speed, 0.));
+		}*/
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
+			ball.AddForce(sf::Vector2f(0., -speed));
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
+			ball.AddForce(sf::Vector2f(0., speed));
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+			ball.AddForce(sf::Vector2f(-speed, 0.));
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+			ball.AddForce(sf::Vector2f(speed, 0.));
+		}
+
+		if (currentPos.x < 0) {
+			ball.AddForce(sf::Vector2f(2 * std::abs(ball.velocity.x), 0));
+		}
+		if (currentPos.x + 60 > window.getSize().x) {
+			ball.AddForce(sf::Vector2f(-2* std::abs(ball.velocity.x), 0));
+		}
+
+		if (currentPos.y < 0) {
+			ball.AddForce(sf::Vector2f(0, 2 * std::abs(ball.velocity.y)));
+		}
+		if (currentPos.y + 60 > window.getSize().y) {
+			ball.AddForce(sf::Vector2f(0, -2 * std::abs(ball.velocity.y)));
 		}
 
 		window.clear(sf::Color::White);
