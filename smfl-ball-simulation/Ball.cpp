@@ -5,7 +5,7 @@ Ball::Ball(float radius, const sf::Color& color) {
 	circle.setFillColor(color);
 	velocity = sf::Vector2f(0.f, 0.f);
 	mass = 1.0f; 
-	friction = 0.01f;
+	friction = 0.001f;
 	threshold = 0.01f;
 }
 

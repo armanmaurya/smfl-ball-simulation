@@ -5,9 +5,10 @@ int main() {
 	sf::RenderWindow window(sf::VideoMode(1280, 720), "Window");
 	Ball ball(30., sf::Color::Black);
 	window.setFramerateLimit(60);
-	long speed = 1.f * (1/60);
+	long speed = 10.f;
 	ball.setPosition(sf::Vector2f((window.getSize().x / 2) - 30, (window.getSize().y / 2) - 30));
 	
+	sf::Clock clock;  // Clock to measure time elapsed
 	while (window.isOpen()) {
 		sf::Event event;
 		while (window.pollEvent(event)) {
@@ -15,6 +16,9 @@ int main() {
 				window.close();
 			}
 		}
+
+		// Get the time elapsed since last frame and restart the clock
+		float deltaTime = clock.restart().asSeconds();
 		sf::Vector2f currentPos = ball.getPosition();
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::LShift)) {
@@ -38,16 +42,16 @@ int main() {
 		}*/
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
-			ball.AddForce(sf::Vector2f(0., -speed));
+			ball.AddForce(sf::Vector2f(0., -speed * deltaTime));
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
-			ball.AddForce(sf::Vector2f(0., speed));
+			ball.AddForce(sf::Vector2f(0., speed * deltaTime));
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-			ball.AddForce(sf::Vector2f(-speed, 0.));
+			ball.AddForce(sf::Vector2f(-speed * deltaTime, 0.));
 		}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
-			ball.AddForce(sf::Vector2f(speed, 0.));
+			ball.AddForce(sf::Vector2f(speed * deltaTime, 0.));
 		}
 
 		if (currentPos.x < 0) {
