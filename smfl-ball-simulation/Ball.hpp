@@ -18,5 +18,7 @@ public:
 	void setPosition(sf::Vector2f pos);
 	void AddForce(sf::Vector2f force);
 	void applyFriction();
+	bool checkCollision(const Ball& other);
+	void resolveCollision(Ball& other);
 	sf::Vector2f getPosition();
 };
