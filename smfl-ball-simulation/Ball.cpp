@@ -32,7 +32,7 @@ void Ball::draw(sf::RenderWindow& window) {
 		this->velocity = sf::Vector2f(this->velocity.x, -(this->velocity.y));
 	}
 	if (currentPos.y + (2 * circle.getRadius()) > window.getSize().y) {
-		circle.setPosition(sf::Vector2f(currentPos.x, window.getSize().y - (2 * circle.getRadius())));
+		circle.setPosition(sf::Vector2f(currentPos.x, window.getSize().y - (2 * circle.getRadius())));  
 		this->velocity = sf::Vector2f(this->velocity.x, -(this->velocity.y));
 	}
 	circle.move(velocity);
